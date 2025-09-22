@@ -36,7 +36,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          files: out/make/*
+          # This is the corrected line
+          files: out/make/**/*
           name: Release ${{ github.ref_name }}
           prerelease: true
 
