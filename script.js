@@ -1,3 +1,5 @@
+//server.js
+
 const balanceEl = document.getElementById('balance');
 const changeTotalEl = document.getElementById('changeTotal');
 const historyListEl = document.getElementById('historyList');
