@@ -1,4 +1,3 @@
-// Element Selectors
 const balanceEl = document.getElementById('balance');
 const changeTotalEl = document.getElementById('changeTotal');
 const historyListEl = document.getElementById('historyList');
@@ -16,11 +15,9 @@ const moneyButtons = document.querySelectorAll('.money-btn');
 const backBtns = document.querySelectorAll('.back-btn');
 const pages = document.querySelectorAll('.page');
 
-// State
 let currentBalance = 0;
 let changeAmount = 0;
 
-// Utility Functions
 const formatCurrency = (amount) => {
     return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(amount);
 };
@@ -65,7 +62,6 @@ const addHistoryEntry = (amount, type) => {
     historyListEl.prepend(entry);
 };
 
-// Event Listeners
 changeMoneyBtn.addEventListener('click', () => {
     changeAmount = 0;
     updateDisplays();
@@ -131,6 +127,5 @@ backBtns.forEach(btn => {
     });
 });
 
-// Initial Setup
 updateDisplays();
 showPage('main-page');

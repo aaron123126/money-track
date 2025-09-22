@@ -41,7 +41,6 @@ body {
     top: 17px;
 }
 
-/* Main Page Styles */
 .moneytrack {
     color: #000000;
     text-align: left;
@@ -123,7 +122,6 @@ body {
     left: 54px;
 }
 
-/* Add/Remove Page Styles */
 .add-removemoney-title {
     color: #000000;
     text-align: center;
@@ -199,7 +197,6 @@ body {
     width: 202px;
 }
 
-/* Set Money Page Styles */
 .setmoney-title {
     color: #000000;
     text-align: center;
@@ -248,7 +245,6 @@ body {
     width: 160px;
 }
 
-/* Confirm Page Styles */
 .confirmoverwrite-title {
     color: #000000;
     text-align: center;
