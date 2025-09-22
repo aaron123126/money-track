@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Money Track</title>
+</head>
+<body>
+    <h1>Money Tracker</h1>
+    <h2>Current Balance: <span id="balance">€0.00</span></h2>
+    <div id="main">
+        
+        <br/>
+        <button id="changeMoneyBtn">Change Money</button>
+        <button id="setMoneyBtn">Set Money</button>
+
+        <div id="changeMoney">
+            <button class="money-btn" data-value="0.5">50 ct</button>
+            <button class="money-btn" data-value="1">1 euro</button>
+            <button class="money-btn" data-value="2">2 euro</button>
+            <button class="money-btn" data-value="5">5 euro</button>
+            <button class="money-btn" data-value="10">10 euro</button>
+            <button class="money-btn" data-value="20">20 euro</button>
+            <button class="money-btn" data-value="50">50 euro</button>
+            <button class="money-btn" data-value="100">100 euro</button>
+            <h3>Total: <span id="changeTotal">€0.00</span></h3>
+            <button id="addMoneyBtn">Add this Money</button>
+            <button id="rmMoneyBtn">Remove this Money</button>            
+        </div>
+
+        <div id="setMoney">
+            <h2>Overwrite Money</h2>
+            <input type="number" id="moneyInput" placeholder="Enter amount">
+            <button id="submitBtn">Set</button>
+        </div>
+
+        <div id="confirm">
+            <h2>Are you sure you want to overwrite your current Balance to this amount?</h2>
+            <button id="yesBtn">Overwrite</button>
+            <button id="noBtn">Cancel</button>
+        </div>
+
+        <div id="history">
+            <h3>History</h3>
+            <div id="historyList"></div>
+        </div>
+
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
