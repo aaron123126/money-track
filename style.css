@@ -1,34 +1,314 @@
-@import url('https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
-* {
-    font-family: "Alan Sans", sans-serif;
-    font-weight: 300;
-    font-style: normal;
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #c3d898;
+    overflow: hidden;
+    user-select: none;
 }
 
-button {
-    width: 100px;
-    height: 30px;
-    border-radius: 100px;
-    border: none;
-    background-color: #4CAF50;
-    transition: 200ms;
-}
-
-button:hover {
-    background-color: #45a049;
+.button-like {
     cursor: pointer;
-    transition: 200ms;
 }
 
-#confirm {
+.page {
+    position: absolute;
+    background-color: #c3d898;
+    height: 468px;
+    width: 524px;
+    padding: 0px;
     display: none;
 }
 
-#changeMoney {
-    display: none;
+#main-page {
+    display: block;
 }
 
-#setMoney {
-    display: none;
+.arrow_back {
+    height: 24px;
+    width: 24px;
+    padding: 0px;
+    position: absolute;
+    left: 10px;
+    top: 8px;
+}
+
+.icon-img {
+    position: absolute;
+    left: 34px;
+    top: 17px;
+}
+
+/* Main Page Styles */
+.moneytrack {
+    color: #000000;
+    text-align: left;
+    font-size: 36px;
+    position: absolute;
+    left: 145px;
+    top: 20px;
+    width: 234px;
+}
+.currentbalance {
+    color: #000000;
+    text-align: left;
+    font-size: 24px;
+    position: absolute;
+    left: 24px;
+    top: 94px;
+    width: auto;
+    min-width: 247px;
+}
+.history-title {
+    color: #000000;
+    text-align: left;
+    font-size: 24px;
+    position: absolute;
+    left: 24px;
+    top: 253px;
+    width: 95px;
+}
+.history-list {
+    position: absolute;
+    top: 290px;
+    left: 24px;
+    width: 476px;
+    height: 150px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.history-list div {
+    font-size: 16px;
+    margin-bottom: 13px;
+}
+
+.frame2 {
+    background-color: #7ea16b;
+    height: 59px;
+    width: 222px;
+    border-radius: 100px;
+    position: absolute;
+    left: 24px;
+    top: 166px;
+}
+.add-removemoney-main {
+    color: #000000;
+    text-align: center;
+    font-size: 20px;
+    position: absolute;
+    width: 201px;
+    height: 30px;
+    left: 10px;
+    top: 15px;
+}
+.frame3 {
+    background-color: #1c3144;
+    height: 59px;
+    width: 222px;
+    border-radius: 100px;
+    position: absolute;
+    left: 277px;
+    top: 166px;
+}
+.setmoney2 {
+    color: #ffffff;
+    text-align: center;
+    font-size: 20px;
+    position: absolute;
+    width: 114px;
+    top: 19px;
+    left: 54px;
+}
+
+/* Add/Remove Page Styles */
+.add-removemoney-title {
+    color: #000000;
+    text-align: center;
+    font-size: 32px;
+    position: absolute;
+    left: 107px;
+    top: 56px;
+    width: 309px;
+}
+
+.money-grid {
+    position: absolute;
+    top: 118px;
+    left: 90px;
+    width: 344px;
+    display: grid;
+    grid-template-columns: repeat(4, 77px);
+    grid-template-rows: repeat(2, 59px);
+    gap: 12px;
+}
+
+.money-btn-style {
+    background-color: #ffffff;
+    border-radius: 20px;
+    border: none;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.amount-display {
+    color: #000000;
+    font-size: 24px;
+    position: absolute;
+    left: 90px;
+    top: 278px;
+}
+
+.add-btn-container {
+    background-color: #7ea16b;
+    height: 59px;
+    width: 222px;
+    border-radius: 100px;
+    position: absolute;
+    left: 27px;
+    top: 353px;
+}
+.addthisamount {
+    color: #000000;
+    text-align: center;
+    font-size: 16px;
+    position: absolute;
+    top: 19px;
+    left: 29px;
+    width: 192px;
+}
+.remove-btn-container {
+    background-color: #596f62;
+    height: 59px;
+    width: 222px;
+    border-radius: 100px;
+    position: absolute;
+    left: 274px;
+    top: 353px;
+}
+.removethisamount {
+    color: #ffffff;
+    text-align: center;
+    font-size: 16px;
+    position: absolute;
+    top: 20px;
+    left: 27px;
+    width: 202px;
+}
+
+/* Set Money Page Styles */
+.setmoney-title {
+    color: #000000;
+    text-align: center;
+    font-size: 32px;
+    position: absolute;
+    left: 107px;
+    top: 100px;
+    width: 309px;
+}
+.input-container {
+    background-color: #ffffff;
+    height: 59px;
+    width: 387px;
+    position: absolute;
+    border-radius: 20px;
+    top: 193px;
+    left: 68px;
+}
+.enteramount {
+    color: #000000;
+    font-size: 20px;
+    position: absolute;
+    width: 347px;
+    top: 18px;
+    left: 20px;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+.set-amount-btn {
+    background-color: #7ea16b;
+    height: 59px;
+    width: 222px;
+    border-radius: 100px;
+    position: absolute;
+    left: 151px;
+    top: 309px;
+}
+.setthisamount {
+    color: #000000;
+    text-align: center;
+    font-size: 20px;
+    position: absolute;
+    top: 17px;
+    left: 30px;
+    width: 160px;
+}
+
+/* Confirm Page Styles */
+.confirmoverwrite-title {
+    color: #000000;
+    text-align: center;
+    font-size: 32px;
+    position: absolute;
+    left: 107px;
+    top: 67px;
+    width: 309px;
+}
+.confirm-text {
+    color: #000000;
+    text-align: center;
+    font-size: 24px;
+    position: absolute;
+    left: 107px;
+    top: 127px;
+    width: 309px;
+}
+.warning-text {
+    color: #c01313;
+    text-align: center;
+    font-size: 24px;
+    position: absolute;
+    left: 107px;
+    top: 244px;
+    width: 309px;
+}
+.overwrite-btn {
+    background-color: #70161e;
+    height: 59px;
+    width: 222px;
+    border-radius: 100px;
+    position: absolute;
+    left: 24px;
+    top: 341px;
+}
+.overwrite-text {
+    color: #ffffff;
+    text-align: center;
+    font-size: 20px;
+    position: absolute;
+    width: 202px;
+    top: 16px;
+    left: 10px;
+}
+.cancel-btn {
+    background-color: #7ea16b;
+    height: 59px;
+    width: 222px;
+    border-radius: 100px;
+    position: absolute;
+    left: 277px;
+    top: 341px;
+}
+.cancel-text {
+    color: #000000;
+    text-align: center;
+    font-size: 20px;
+    position: absolute;
+    width: 202px;
+    top: 16px;
+    left: 10px;
 }

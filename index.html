@@ -7,46 +7,81 @@
     <title>Money Track</title>
 </head>
 <body>
-    <h1>Money Tracker</h1>
-    <h2>Current Balance: <span id="balance">0.00€</span></h2>
-    <div id="main">
+
+    <!-- Main Page -->
+    <div id="main-page" class="page">
+        <div class="moneytrack">Money Track</div>
+        <div id="balance-container" class="currentbalance">Current Balance: <span id="balance">0.00€</span></div>
+        <div class="history-title">History</div>
+        <div id="historyList" class="history-list"></div>
         
-        <br/>
-        <button id="changeMoneyBtn">Change Money</button>
-        <button id="setMoneyBtn">Set Money</button>
-
-        <div id="changeMoney">
-            <button class="money-btn" data-value="0.5">50 ct</button>
-            <button class="money-btn" data-value="1">1 euro</button>
-            <button class="money-btn" data-value="2">2 euro</button>
-            <button class="money-btn" data-value="5">5 euro</button>
-            <button class="money-btn" data-value="10">10 euro</button>
-            <button class="money-btn" data-value="20">20 euro</button>
-            <button class="money-btn" data-value="50">50 euro</button>
-            <button class="money-btn" data-value="100">100 euro</button>
-            <h3>Total: <span id="changeTotal">€0.00</span></h3>
-            <button id="addMoneyBtn">Add this Money</button>
-            <button id="rmMoneyBtn">Remove this Money</button>            
+        <div id="changeMoneyBtn" class="frame2 button-like">
+            <div class="add-removemoney-main">Add/Remove Money</div>
         </div>
-
-        <div id="setMoney">
-            <h2>Overwrite Money</h2>
-            <input type="number" id="moneyInput" placeholder="Enter amount">
-            <button id="submitBtn">Set</button>
+        
+        <div id="setMoneyBtn" class="frame3 button-like">
+            <div class="setmoney2">Set Money</div>
         </div>
-
-        <div id="confirm">
-            <h2>Are you sure you want to overwrite your current Balance to this amount?</h2>
-            <button id="yesBtn">Overwrite</button>
-            <button id="noBtn">Cancel</button>
-        </div>
-
-        <div id="history">
-            <h3>History</h3>
-            <div id="historyList"></div>
-        </div>
-
     </div>
+
+    <!-- Add/Remove Money Page -->
+    <div id="add-remove-page" class="page">
+        <img class="arrow_back back-btn button-like" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAC/SURBVHgB7ZLPDcIgFIcfcPFi5SzQMIIjOIIbqJPYcby6gW6gG5AoSY/YJl4VEjU1JZZYPDThSzjw5/0+8gAgMSj4VG5yO+AfuHDB5N0NxuQstA6HHHLhCEHxrFhrrY4Qi+bNhZAriEkKdyBf+PtBf+Cs1Udm+xfhtjQ6nMvi1aKcySX0gPgWq8rsswm1nYK5nS5oRtW1NieIJYgpId82Y0hI14G+kk6BTzIe0V19M2VIbZCgKcEIDpdSbSExGB5edFkSIAcSFAAAAABJRU5ErkJggg=="/>
+        <div class="add-removemoney-title">Add/Remove Money</div>
+
+        <div class="money-grid">
+            <button class="money-btn money-btn-style" data-value="0.5">50ct</button>
+            <button class="money-btn money-btn-style" data-value="1">1€</button>
+            <button class="money-btn money-btn-style" data-value="2">2€</button>
+            <button class="money-btn money-btn-style" data-value="5">5€</button>
+            <button class="money-btn money-btn-style" data-value="10">10€</button>
+            <button class="money-btn money-btn-style" data-value="20">20€</button>
+            <button class="money-btn money-btn-style" data-value="50">50€</button>
+            <button class="money-btn money-btn-style" data-value="100">100€</button>
+        </div>
+        
+        <div class="amount-display">Amount: <span id="changeTotal">0.00€</span></div>
+
+        <div id="addMoneyBtn" class="add-btn-container button-like">
+            <div class="addthisamount">Add this Amount</div>
+            <img class="icon-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABGSURBVHgB7dOxCQAgDATA1zVEcP+pBHEOxUIQtPkiWOQPbITkCSSAyCmnMtZjaiKMKeB/QHh9spuytV6vfuYTUHQHChCvJqaFCXRI9qdpAAAAAElFTSuQmCC"/>
+        </div>
+        <div id="rmMoneyBtn" class="remove-btn-container button-like">
+            <div class="removethisamount">Remove this Amount</div>
+            <img class="icon-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAuSURBVHgB7cyxDQAwCMTAhy77D5suZAEQoqLxtZYsAUDLqvBuhAb8WPpyAcC+D1/KBARQ9ZTlAAAAAElFTkSuQmCC"/>
+        </div>
+    </div>
+
+    <!-- Set Money Page -->
+    <div id="set-money-page" class="page">
+        <img class="arrow_back back-btn button-like" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAC/SURBVHgB7ZLPDcIgFIcfcPFi5SzQMIIjOIIbqJPYcby6gW6gG5AoSY/YJl4VEjU1JZZYPDThSzjw5/0+8gAgMSj4VG5yO+AfuHDB5N0NxuQstA6HHHLhCEHxrFhrrY4Qi+bNhZAriEkKdyBf+PtBf+Cs1Udm+xfhtjQ6nMvi1aKcySX0gPgWq8rsswm1nYK5nS5oRtW1NieIJYgpId82Y0hI14G+kk6BTzIe0V19M2VIbZCgKcEIDpdSbSExGB5edFkSIAcSFAAAAABJRU5ErkJggg=="/>
+        <div class="setmoney-title">Set Money</div>
+        <div class="input-container">
+            <input type="number" id="moneyInput" class="enteramount" placeholder="Enter Amount">
+        </div>
+        <div id="submitBtn" class="set-amount-btn button-like">
+            <div class="setthisamount">Set this Amount</div>
+             <img class="icon-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACWSURBVHgB7ZNBCoMwEEW/sb2DUApzFD1KT9ajeJVZ9g7F1p+FoGJGR1dKHoQJw/B+EgiQyVybqhJ5PqSNNTUTcEB+L9FyW7O+U3M37GAkF/yh5Q+v1GwBJwvyRj+qqflgiebv65WbN4hylppLvx2a2PPKzQDhabtAYUEhQ4a2R24GLITAK18NmIQQr3wzMUSMz5TJnJwe2mZBoodj2p4AAAAASUVORK5CYII="/>
+        </div>
+    </div>
+
+    <!-- Confirm Page -->
+    <div id="confirm-page" class="page">
+         <img class="arrow_back back-btn button-like" data-target="set-money-page" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAC/SURBVHgB7ZLPDcIgFIcfcPFi5SzQMIIjOIIbqJPYcby6gW6gG5AoSY/YJl4VEjU1JZZYPDThSzjw5/0+8gAgMSj4VG5yO+AfuHDB5N0NxuQstA6HHHLhCEHxrFhrrY4Qi+bNhZAriEkKdyBf+PtBf+Cs1Udm+xfhtjQ6nMvi1aKcySX0gPgWq8rsswm1nYK5nS5oRtW1NieIJYgpId82Y0hI14G+kk6BTzIe0V19M2VIbZCgKcEIDpdSbSExGB5edFkSIAcSFAAAAABJRU5ErkJggg=="/>
+        <div class="confirmoverwrite-title">Confirm Overwrite</div>
+        <div class="confirm-text">Are you sure you want to overwrite your current Balance to this amount?</div>
+        <div class="warning-text">This can not be undone!</div>
+        
+        <div id="yesBtn" class="overwrite-btn button-like">
+            <div class="overwrite-text">Overwrite</div>
+            <img class="icon-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAB2SURBVHgB7ZLBDYAwDAMzAiMwAhsxKiMwAksgFfGoaST4UApIcaU+clIffdhWnIg4ThMA6OKGGTtGYXOZxwCkt+hfWGTmAb2wMJl/jWkzT4t6E5lrUVFJTOlcRU8h1IVmISsG+rXcQlDnFAt1UTlDpirmjvOLAyRdCVlXrHt0AAAAAElFTkSuQmCC"/>
+        </div>
+        <div id="noBtn" class="cancel-btn button-like">
+            <div class="cancel-text">Cancel</div>
+            <img class="icon-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAF7SURBVHgB3VXRbYNADPXxU/UvIzACI7QTdIR0hG6SrpAJmg3SEdoJyAb0IwJ0Crzal+M4wQEXVFVqLaFEZ9979sM2RH/d1JwTwIYq2iKhBwJlfJRa14lvfijQQd2rPa2xyxnPbYmirYCFJ0eF7U3gqLHzAI5CxiBp59dnZJeKE2BfF4cSu9vAOXsBWYo3RLbSRRIjiwWXLCnSJNaRzMklepogfQ0SWUQGX57Ohj4rGdoahWmOyez5kkd49F5kOgDPp+KbEi/j7Gu8+dkHgAxJ6GyUZIkDzciTBaRwgFPgXqzxhQhMu1HABiRB8CmchH7LnEThsqMk0izvUKK+At4t8tM0vHc8cK5VukSATry4HuWR/3ImPp8k0XR9f6DPUQXSWj/Vpn4n9lIU2LhpXDNo/RyNO6gzfxq1Xrkq9MJmZale3chHrGEB7MDlLsWYI7EaCxG85SeyWEncuo4G78zKlS9+cDj7OVlUDFGi6Cn4ySR6pzvaK6W+6N/aN5UT0YUByJhpAAAAAElFTkSuQmCC"/>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 </html>

@@ -1,24 +1,38 @@
-const changeMoneyBtn = document.getElementById('changeMoneyBtn');
-const setMoneyBtn = document.getElementById('setMoneyBtn');
-const changeMoneyDiv = document.getElementById('changeMoney');
-const setMoneyDiv = document.getElementById('setMoney');
-const confirmModal = document.getElementById('confirm');
-const submitBtn = document.getElementById('submitBtn');
-const yesBtn = document.getElementById('yesBtn');
-const cancelBtn = document.getElementById('noBtn');
+// Element Selectors
 const balanceEl = document.getElementById('balance');
 const changeTotalEl = document.getElementById('changeTotal');
+const historyListEl = document.getElementById('historyList');
 const moneyInput = document.getElementById('moneyInput');
+
+const changeMoneyBtn = document.getElementById('changeMoneyBtn');
+const setMoneyBtn = document.getElementById('setMoneyBtn');
+const submitBtn = document.getElementById('submitBtn');
 const addMoneyBtn = document.getElementById('addMoneyBtn');
 const rmMoneyBtn = document.getElementById('rmMoneyBtn');
-const historyListEl = document.getElementById('historyList');
-const moneyButtons = document.querySelectorAll('.money-btn');
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
 
+const moneyButtons = document.querySelectorAll('.money-btn');
+const backBtns = document.querySelectorAll('.back-btn');
+const pages = document.querySelectorAll('.page');
+
+// State
 let currentBalance = 0;
 let changeAmount = 0;
 
+// Utility Functions
 const formatCurrency = (amount) => {
     return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(amount);
+};
+
+const showPage = (pageId) => {
+    pages.forEach(page => {
+        page.style.display = 'none';
+    });
+    const activePage = document.getElementById(pageId);
+    if (activePage) {
+        activePage.style.display = 'block';
+    }
 };
 
 const updateDisplays = () => {
@@ -28,25 +42,38 @@ const updateDisplays = () => {
 
 const addHistoryEntry = (amount, type) => {
     const entry = document.createElement('div');
-    const sign = amount >= 0 ? '+' : '';
-    entry.textContent = `${type}: ${sign}${formatCurrency(amount)} | New Balance: ${formatCurrency(currentBalance)}`;
-    entry.style.color = amount < 0 ? 'red' : 'green';
+    let text = '';
+    let color = '#000000';
+
+    switch (type) {
+        case 'Added':
+            text = `+ Added ${formatCurrency(amount)} · New Total: ${formatCurrency(currentBalance)}`;
+            color = '#3a7f06';
+            break;
+        case 'Removed':
+            text = `- Removed ${formatCurrency(Math.abs(amount))} · New Total: ${formatCurrency(currentBalance)}`;
+            color = '#9a2103';
+            break;
+        case 'Set':
+            text = `| Set Money · New Total: ${formatCurrency(currentBalance)}`;
+            color = '#b75b00';
+            break;
+    }
+
+    entry.textContent = text;
+    entry.style.color = color;
     historyListEl.prepend(entry);
 };
 
+// Event Listeners
 changeMoneyBtn.addEventListener('click', () => {
-    const isHidden = changeMoneyDiv.style.display === 'none' || changeMoneyDiv.style.display === '';
-    changeMoneyDiv.style.display = isHidden ? 'block' : 'none';
-    setMoneyDiv.style.display = 'none';
     changeAmount = 0;
     updateDisplays();
+    showPage('add-remove-page');
 });
 
 setMoneyBtn.addEventListener('click', () => {
-    const isHidden = setMoneyDiv.style.display === 'none' || setMoneyDiv.style.display === '';
-    setMoneyDiv.style.display = isHidden ? 'block' : 'none';
-    changeMoneyDiv.style.display = 'none';
-    confirmModal.style.display = 'none';
+    showPage('set-money-page');
 });
 
 moneyButtons.forEach(button => {
@@ -62,6 +89,7 @@ addMoneyBtn.addEventListener('click', () => {
         addHistoryEntry(changeAmount, 'Added');
         changeAmount = 0;
         updateDisplays();
+        showPage('main-page');
     }
 });
 
@@ -72,28 +100,37 @@ rmMoneyBtn.addEventListener('click', () => {
         addHistoryEntry(amountToRemove, 'Removed');
         changeAmount = 0;
         updateDisplays();
+        showPage('main-page');
     }
 });
 
 submitBtn.addEventListener('click', () => {
-    if (moneyInput.value !== '' && !isNaN(parseFloat(moneyInput.value))) {
-        confirmModal.style.display = 'block';
+    const value = moneyInput.value;
+    if (value !== '' && !isNaN(parseFloat(value))) {
+        showPage('confirm-page');
     }
 });
 
 yesBtn.addEventListener('click', () => {
     const newValue = parseFloat(moneyInput.value);
-    const difference = newValue - currentBalance;
     currentBalance = newValue;
-    addHistoryEntry(difference, 'Set');
+    addHistoryEntry(0, 'Set');
     updateDisplays();
-    confirmModal.style.display = 'none';
-    setMoneyDiv.style.display = 'none';
     moneyInput.value = '';
+    showPage('main-page');
 });
 
-cancelBtn.addEventListener('click', () => {
-    confirmModal.style.display = 'none';
+noBtn.addEventListener('click', () => {
+    showPage('set-money-page');
 });
 
+backBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const targetPage = btn.dataset.target || 'main-page';
+        showPage(targetPage);
+    });
+});
+
+// Initial Setup
 updateDisplays();
+showPage('main-page');
