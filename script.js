@@ -18,6 +18,7 @@ const backBtns = document.querySelectorAll('.back-btn');
 const pages = document.querySelectorAll('.page');
 
 let currentBalance = 0;
+let history = [];
 let changeAmount = 0;
 
 const formatCurrency = (amount) => {
@@ -37,10 +38,20 @@ const showPage = (pageId) => {
 const updateDisplays = () => {
     balanceEl.textContent = formatCurrency(currentBalance);
     changeTotalEl.textContent = formatCurrency(changeAmount);
+    renderHistory();
 };
 
+const renderHistory = () => {
+    historyListEl.innerHTML = '';
+    history.forEach(item => {
+        const entry = document.createElement('div');
+        entry.textContent = item.text;
+        entry.style.color = item.color;
+        historyListEl.prepend(entry);
+    });
+}
+
 const addHistoryEntry = (amount, type) => {
-    const entry = document.createElement('div');
     let text = '';
     let color = '#000000';
 
@@ -59,9 +70,12 @@ const addHistoryEntry = (amount, type) => {
             break;
     }
 
-    entry.textContent = text;
-    entry.style.color = color;
-    historyListEl.prepend(entry);
+    history.push({ text, color });
+    saveData();
+};
+
+const saveData = () => {
+    window.electronAPI.saveData({ balance: currentBalance, history: history });
 };
 
 changeMoneyBtn.addEventListener('click', () => {
@@ -129,5 +143,10 @@ backBtns.forEach(btn => {
     });
 });
 
-updateDisplays();
+window.electronAPI.onDataLoaded((data) => {
+    currentBalance = data.balance;
+    history = data.history;
+    updateDisplays();
+});
+
 showPage('main-page');

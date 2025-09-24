@@ -1,5 +1,20 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const fs = require('fs');
+
+const dataFilePath = path.join(app.getPath('userData'), 'data.json');
+
+const loadData = () => {
+    try {
+        return JSON.parse(fs.readFileSync(dataFilePath, 'utf-8'));
+    } catch (error) {
+        return { balance: 0, history: [] };
+    }
+};
+
+const saveData = (data) => {
+    fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2));
+};
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
@@ -10,9 +25,11 @@ const createWindow = () => {
     }
   });
 
-
   mainWindow.loadFile('index.html');
 
+  mainWindow.webContents.on('did-finish-load', () => {
+    mainWindow.webContents.send('data-loaded', loadData());
+  });
 };
 
 app.whenReady().then(() => {
@@ -23,6 +40,10 @@ app.whenReady().then(() => {
       createWindow();
     }
   });
+});
+
+ipcMain.on('save-data', (event, data) => {
+    saveData(data);
 });
 
 
