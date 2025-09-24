@@ -24,11 +24,15 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "name": "moneytrack"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
-          "config": {}
+          "config": {
+            "setupExe": "moneytrack.exe"
+          }
         },
         {
           "name": "@electron-forge/maker-zip",
