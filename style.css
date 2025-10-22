@@ -96,6 +96,14 @@ body {
     margin-bottom: 13px;
 }
 
+.chart-container {
+    position: absolute;
+    top: 130px;
+    left: 24px;
+    width: 476px;
+    height: 150px;
+}
+
 .frame2 {
     background-color: #7ea16b;
     height: 59px;

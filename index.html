@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Money Track</title>
 </head>
 <body>
@@ -14,6 +15,10 @@
         <div id="balance-container" class="currentbalance">Current Balance: <span id="balance">0.00€</span></div>
         <div class="history-title">History</div>
         <div id="historyList" class="history-list"></div>
+
+        <div class="chart-container">
+            <canvas id="moneyChart"></canvas>
+        </div>
         
         <div id="changeMoneyBtn" class="frame2 button-like">
             <div class="add-removemoney-main">Add/Remove Money</div>

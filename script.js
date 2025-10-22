@@ -4,6 +4,45 @@ const balanceEl = document.getElementById('balance');
 const changeTotalEl = document.getElementById('changeTotal');
 const historyListEl = document.getElementById('historyList');
 const moneyInput = document.getElementById('moneyInput');
+const moneyChart = document.getElementById('moneyChart');
+
+let chart;
+
+const createChart = () => {
+    if (chart) {
+        chart.destroy();
+    }
+
+    chart = new Chart(moneyChart, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Balance',
+                data: [],
+                borderColor: '#1c3144',
+                tension: 0.1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+};
+
+const updateChart = () => {
+    if (chart) {
+        chart.data.labels = history.map((_, index) => index + 1);
+        chart.data.datasets[0].data = history.map(item => item.balance);
+        chart.update();
+    }
+};
 
 const changeMoneyBtn = document.getElementById('changeMoneyBtn');
 const setMoneyBtn = document.getElementById('setMoneyBtn');
@@ -70,7 +109,8 @@ const addHistoryEntry = (amount, type) => {
             break;
     }
 
-    history.push({ text, color });
+    history.push({ text, color, balance: currentBalance });
+    updateChart();
     saveData();
 };
 
@@ -147,6 +187,8 @@ window.electronAPI.onDataLoaded((data) => {
     currentBalance = data.balance;
     history = data.history;
     updateDisplays();
+    createChart();
+    updateChart();
 });
 
 showPage('main-page');
