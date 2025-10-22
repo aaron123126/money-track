@@ -87,9 +87,15 @@ body {
     left: 24px;
     width: 476px;
     height: 150px;
-    overflow-y: auto;
+    overflow-y: scroll;
     display: flex;
     flex-direction: column-reverse;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.history-list::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari, Opera */
 }
 .history-list div {
     font-size: 16px;
