@@ -3,4 +3,3 @@ node_modules
 *.txt
 out/
 forge*
-package-lock.json
