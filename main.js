@@ -19,7 +19,7 @@ const saveData = (data) => {
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 524,
-    height: 468,
+    height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
